@@ -1,12 +1,8 @@
-nav {
-  background-color: var(--color-primary);
-  color: white;
-}
-
 .nav-container {
   padding: 2rem 2rem;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 .nav-right {
   display: flex;

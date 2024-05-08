@@ -1,11 +1,12 @@
-<nav>
+
+<mat-toolbar color="primary">
   <div class="nav-container">
     <div>
       <span>BMW - Store</span>
     </div>
     <div class="nav-right">
-      <div>Login  <fa-icon [icon]="['far', 'user']"></fa-icon></div>
-      <div>Cart  <fa-icon [icon]="['fas', 'cart-shopping']"></fa-icon></div>
+      <a mat-button (click)="openDialog()">Login  <fa-icon [icon]="['far', 'user']"></fa-icon></a>
+      <a mat-button>Cart  <fa-icon [icon]="['fas', 'cart-shopping']"></fa-icon></a>
     </div>
   </div>
-</nav>
+</mat-toolbar>
