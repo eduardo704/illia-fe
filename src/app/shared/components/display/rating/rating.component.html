@@ -1,0 +1,8 @@
+<div class="raiting">
+  <div class="stars">
+    <fa-icon *ngFor="let star of fullStars" [icon]="['fas', 'star']"></fa-icon>
+    <fa-icon *ngFor="let half of halfStars" [icon]="['fas', 'star-half-stroke']"></fa-icon>
+    <fa-icon *ngFor="let empty of emptyStars" [icon]="['far', 'star']"></fa-icon>
+  </div>
+  ({{ rating.rate }}), {{rating.count}}
+</div>

@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="header">
+    <img [src]="product.image" [alt]="product.description" />
+  </div>
+  <div class="body">
+    <span>{{ product.title }}</span>
+    <app-rating [rating]="product.rating"></app-rating>
+  </div>
+  <div class="bottom">
+    <span class="price">{{ product.price | currency}}</span>
+    <button mat-flat-button color="primary">Add to cart</button>
+  </div>
+</div>

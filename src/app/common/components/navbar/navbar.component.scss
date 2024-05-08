@@ -1,0 +1,14 @@
+nav {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.nav-container {
+  padding: 2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-right {
+  display: flex;
+  gap: 2rem;
+}

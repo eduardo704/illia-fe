@@ -1,0 +1,119 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+$bright-navy-blue-palette: (
+  50: #e3f2fb,
+  100: #baddf5,
+  200: #8fc9ef,
+  300: #65b3e9,
+  400: #43a3e5,
+  500: #2194e2,
+  600: #1887d5,
+  700: #0b75c3,
+  800: #0165b1,
+  900: #004892,
+  A100: #c2e4ff,
+  A200: #addcff,
+  A400: #1f9eff,
+  A700: #00518f,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  ),
+);
+$black-palette: (
+  50: #f6f6f6,
+  100: #eaeaea,
+  200: #dbdbdb,
+  300: #c7c7c7,
+  400: #a1a1a1,
+  500: #7f7f7f,
+  600: #585858,
+  700: #464646,
+  800: #292929,
+  900: #050505,
+  A100: #f5f5f5,
+  A200: #eaeaeb,
+  A400: #d6d6d7,
+  A700: #838386,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: white,
+  ),
+);
+$belgie-palette: (
+  50: #f2f3d9,
+  100: #dee0a8,
+  200: #c7cb73,
+  300: #b1b83e,
+  400: #a2ab03,
+  500: #939f00,
+  600: #888f00,
+  700: #797c00,
+  800: #686700,
+  900: #4f4400,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
+
+$bluesky-primary: mat.define-palette($bright-navy-blue-palette, 800, 400, 900);
+$bluesky-accent: mat.define-palette($black-palette, 900);
+$bluesky-warn: mat.define-palette($belgie-palette, 100);
+$bluesky-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $bluesky-primary,
+      accent: $bluesky-accent,
+      warn: $bluesky-warn,
+    ),
+  )
+);
+@include mat.all-component-themes($bluesky-theme);
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, system-ui, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --color-primary: #{mat.get-color-from-palette($bluesky-primary)};
+  --color-accent: #{mat.get-color-from-palette($bluesky-accent)};
+  --color-belgie: #{mat.get-color-from-palette($bluesky-warn)};
+}
