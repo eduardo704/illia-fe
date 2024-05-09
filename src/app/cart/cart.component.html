@@ -3,7 +3,7 @@
   <hr />
   <div class="products-list">
     <div class="products-table">
-      <div class="products-card" *ngFor="let product of product$ | async">
+      <div class="products-card" *ngFor="let product of product$ | async; trackby: trackById">
         <div>
           <img [src]="product.image" alt="" />
         </div>
@@ -13,9 +13,9 @@
         </div>
         <div>
           <div class="quantity-container">
-            <button mat-flat-button color="primary">-</button>
+            <button (click)="removeFromCart(product.id)" mat-flat-button color="primary">-</button>
             <input type="text" [value]="product.quantity" disabled />
-            <button mat-flat-button color="primary">+</button>
+            <button (click)="addToCart(product)" mat-flat-button color="primary">+</button>
           </div>
         </div>
         <div class="total-container">
@@ -27,19 +27,72 @@
     </div>
     <div class="total-summary">
       <div>
-        <p>
-          <span class="label">Deliver to:</span> <span class="val">{{ fakeAdress }} <a>(change)</a></span>
-        </p>
+        <div class="summary-item">
+          <div>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="local_shipping"
+            ></mat-icon>
+          </div>
+
+          <div>
+            <p>
+              <span class="label">Shipping</span>
+              <span class="val">{{ fakeAdress }} <a>(change)</a></span>
+            </p>
+          </div>
+        </div>
+
+        <hr />
       </div>
       <div>
-        <p>
-          <span class="label">Payment method:</span>
-          <span class="val">Mastercard ending in 1234 <a>(change)</a></span>
-        </p>
+        <div class="summary-item">
+          <div>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="credit_card"
+            ></mat-icon>
+          </div>
+
+          <div>
+            <p>
+              <span class="label">Payment method</span>
+              <span class="val">Mastercard ending in 1234 <a>(change)</a></span>
+            </p>
+          </div>
+        </div>
+        <hr />
       </div>
-      <div>
-        <h2>Total: {{totalQuantityOfItems$| async | currency}}</h2>
-        <button mat-flat-button color="primary">Place Order</button>
+
+
+      <div class="total-container">
+        <div class="total">
+          <span class="label">Subtotal</span>
+          <span class="value">{{
+            totalQuantityOfItems$ | async | currency
+          }}</span>
+        </div>
+        <div class="total">
+          <span class="label">Shipping</span>
+          <span class="value">Free</span>
+        </div>
+        <div class="total">
+          <span class="label">Discount</span>
+          <span class="value">none</span>
+        </div>
+        <hr />
+        <div class="total">
+          <span class="total-label">total</span>
+          <span class="total-value">{{
+            totalQuantityOfItems$ | async | currency
+          }}</span>
+        </div>
+
+        <div>
+          <button mat-flat-button color="primary">Place Order</button>
+        </div>
       </div>
     </div>
   </div>
