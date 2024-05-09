@@ -116,4 +116,5 @@ body {
   --color-primary: #{mat.get-color-from-palette($bluesky-primary)};
   --color-accent: #{mat.get-color-from-palette($bluesky-accent)};
   --color-belgie: #{mat.get-color-from-palette($bluesky-warn)};
+  --text-gray: #6F6F6F;
 }

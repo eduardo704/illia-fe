@@ -22,9 +22,6 @@ export class ProductCardComponent implements OnInit {
 
   quantity$: Observable<number>;
 
-  // @Select(CartState.getQuantityById) product$: Observable<number>;
-  // @Select(CartState.getCartById(this.product.id)) nums$: Observable<number>;
-
   constructor(private store: Store) {}
 
   ngOnInit(): void {

@@ -7,7 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginModalComponent } from '../../login/login-modal/login-modal.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
+import { Select } from '@ngxs/store';
+import { CartState } from '../../../state/cart/cart.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -18,17 +21,19 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatToolbarModule,
     MatButtonModule,
     RouterModule,
-    MatBadgeModule
-
+    MatBadgeModule,
+    CommonModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  @Select(CartState.getTotalCartQuantity)
+  totalQuantityOfItems$: Observable<number>;
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
-    this.dialog.open(LoginModalComponent, );
+    this.dialog.open(LoginModalComponent);
     // this.dialog.open(LoginModalComponent, {minWidth: 500, minHeight: 700});
   }
 }

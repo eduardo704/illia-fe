@@ -10,6 +10,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { ProductsState } from './state/products/product.state';
 import { CartState } from './state/cart/cart.state';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     // })),
     importProvidersFrom(NgxsLoggerPluginModule.forRoot({
       disabled: environment.production
-    }))
+    })),
+    importProvidersFrom(NgxsStoragePluginModule.forRoot({  key: 'cart'}))
   ],
 };

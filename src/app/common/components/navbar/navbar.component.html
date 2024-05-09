@@ -1,13 +1,19 @@
-
-<mat-toolbar color="primary">
+<mat-toolbar class="toolbar" color="primary">
   <div class="nav-container">
     <div>
-      <a mat-button [routerLink]="['']" >BMW - Store</a>
+      <a mat-button [routerLink]="['']">BMW - Store</a>
     </div>
     <div class="nav-right">
-      <a mat-button (click)="openDialog()">Login  <fa-icon [icon]="['far', 'user']"></fa-icon></a>
-      <a mat-button matBadge="15" matBadgePosition="after" matBadgeColor="warn" [routerLink]="['/cart']" >Cart  <fa-icon [icon]="['fas', 'cart-shopping']"></fa-icon>
-
+      <a mat-button (click)="openDialog()"
+        >Login <fa-icon [icon]="['far', 'user']"></fa-icon
+      ></a>
+      <a
+        mat-button
+        [matBadge]="totalQuantityOfItems$ | async"
+        matBadgePosition="after"
+        matBadgeColor="warn"
+        [routerLink]="['/cart']"
+        >Cart <fa-icon [icon]="['fas', 'cart-shopping']"></fa-icon>
       </a>
     </div>
   </div>

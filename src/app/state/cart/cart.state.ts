@@ -30,14 +30,37 @@ export class CartState {
       return state.products[id].quantity || 0;
     });
   }
+
   @Selector()
-  static getQuantityById(state: CartStateModel, id: number) {
-    return state.products[id].quantity || 0;
+  static getTotalValue(state: CartStateModel) {
+    let total = 0;
+    for (let key in state.products) {
+      const product = state.products[key];
+      total += product.quantity*product.price;
+    }
+    return total;
+  }
+
+
+  @Selector()
+  static getTotalCartQuantity(state: CartStateModel) {
+    let quantity = 0;
+    for (let key in state.products) {
+      const product = state.products[key];
+      quantity += product.quantity;
+    }
+    return quantity;
   }
 
   @Selector()
   static getProductsState(state: CartStateModel) {
     return state;
+  }
+
+  @Selector()
+  static getAllProductsInCart(state: CartStateModel) {
+    const stateProducts = state.products;
+    return Object.values(stateProducts);
   }
 
   @Action(CartActions.AddToCart)
@@ -93,7 +116,7 @@ export class CartState {
         const { [productId]: value, ...newProducts } = state.products;
         // console.log(withoutSecond); /
         // delete state.products[action.payload.id];
-        console.log(newProducts)
+        console.log(newProducts);
         ctx.setState({ ...state, products: newProducts });
       }
     }
