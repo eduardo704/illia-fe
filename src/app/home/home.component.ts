@@ -1,9 +1,11 @@
-import { take } from 'rxjs';
-import { ProductService } from './../products/product.service';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { ProductCardComponent } from '../products/product-card/product-card.component';
 import { Product } from '../products/product.model';
-import { CommonModule } from '@angular/common';
+import { ProductActions } from '../state/products/product.actions';
+import { ProductsState } from '../state/products/product.state';
 
 @Component({
   selector: 'app-home',
@@ -13,16 +15,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  products:Product[]=[];
-  constructor(private productService: ProductService) {}
+  @Select(ProductsState) product$: Observable<Product[]>;
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.productService
-      .getProducts()
-      .pipe(take(1))
-      .subscribe((products) => {
-        this.products=products;
-        console.log(products);
-      });
+    this.store.dispatch(new ProductActions.FetchAll());
   }
 }

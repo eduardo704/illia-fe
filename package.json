@@ -25,6 +25,9 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@ngxs/devtools-plugin": "^3.8.2",
+    "@ngxs/logger-plugin": "^3.8.2",
+    "@ngxs/store": "^3.8.2",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.2",
     "zone.js": "~0.14.5"
