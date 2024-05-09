@@ -1,11 +1,15 @@
+import { Product } from "../../products/product.model";
+
 export namespace CartActions {
   export class AddToCart {
-    static readonly type = '[Product] Fetch All';
+    static readonly type = '[Cart] Add to Cart ';
+    constructor(public payload: Product) {}
   }
   export class ClearCart {
-    static readonly type = '[Product] Fetch Success';
+    static readonly type = '[Cart] Clear cart';
   }
-  export class FetchFail {
-    static readonly type = '[Product] Fetch Request Fail';
+  export class RemoveFromCart {
+    static readonly type = '[Cart] remove from cart';
+    constructor(public payload: {id: number}) {}
   }
 }

@@ -7,7 +7,27 @@
     <app-rating [rating]="product.rating"></app-rating>
   </div>
   <div class="bottom">
-    <span class="price">{{ product.price | currency}}</span>
-    <button mat-flat-button color="primary">Add to cart</button>
+    <span class="price">{{ product.price | currency }}</span>
+    <!-- <span class="price">quantity: {{ quantity$ | async }}</span> -->
+    @if ( quantity$ | async) {
+    <div class="quantity-container">
+      <button
+        (click)="removeFromCart(product.id)"
+        mat-flat-button
+        color="primary"
+      >
+        -
+      </button>
+      <input type="text" [value]="quantity$ | async" disabled />
+      <button (click)="addToCart(product)" mat-flat-button color="primary">
+        +
+      </button>
+    </div>
+
+    }@else {
+    <button (click)="addToCart(product)" mat-flat-button color="primary">
+      Add to cart
+    </button>
+    }
   </div>
 </div>

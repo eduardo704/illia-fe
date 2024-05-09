@@ -24,7 +24,7 @@ export class ProductsState {
 
 
   @Action(ProductActions.FetchAll, { cancelUncompleted: true })
-  getNovels(ctx: StateContext<Product[]>) {
+  getProducts(ctx: StateContext<Product[]>) {
     return this.productService.getProducts().pipe(
       tap(products => {
         ctx.setState(products);

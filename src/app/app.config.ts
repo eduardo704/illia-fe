@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { ProductsState } from './state/products/product.state';
+import { CartState } from './state/cart/cart.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(HttpClientModule),
     provideAnimationsAsync(),
     provideAnimationsAsync(),
-    importProvidersFrom(NgxsModule.forRoot([ProductsState], {developmentMode: !environment.production})),
+    importProvidersFrom(NgxsModule.forRoot([ProductsState, CartState], {developmentMode: !environment.production})),
     importProvidersFrom(NgxsReduxDevtoolsPluginModule.forRoot({
       // disabled: environment.production
     })),

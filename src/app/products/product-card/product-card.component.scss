@@ -1,4 +1,3 @@
-
 .card {
   display: flex;
   flex-direction: column;
@@ -27,10 +26,18 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    .price{
+    .price {
       font-weight: bold;
       color: #111;
       font-size: 16px;
+    }
+    .quantity-container {
+      display: grid;
+      grid-template-columns: 1fr 50px 1fr;
+      text-align: center;
+      button {
+        transform: scale(0.75);
+      }
     }
   }
 }
