@@ -1,23 +1,21 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginResponse, RegisterRequest } from './auth.model';
 import { tap } from 'rxjs';
+import { BaseHttpService } from '../services/base-http.service';
+import { LoginResponse, RegisterRequest } from './auth.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  constructor(private httpClient: HttpClient) {}
-
+export class AuthService extends BaseHttpService {
   register(user: RegisterRequest) {
-    return this.httpClient.post('http://localhost:8080/api/auth/signup', {
+    return this.httpClient.post(this.backendApi + '/auth/signup', {
       ...user,
     });
   }
 
   login(email: string, password: string) {
     return this.httpClient
-      .post<LoginResponse>('http://localhost:8080/api/auth/login', {
+      .post<LoginResponse>(this.backendApi +'/auth/login', {
         email,
         password,
       })

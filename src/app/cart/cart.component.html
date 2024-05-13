@@ -4,8 +4,8 @@
   <div class="products-list">
     <div class="products-table">
       <div class="products-card" *ngFor="let product of product$ | async; trackBy: trackById">
-        <div>
-          <img [src]="product.image" alt="" />
+        <div class="img-container">
+          <img [src]="product.image" [alt]="product.title" />
         </div>
         <div class="center" colspan="2">
           <span class="title">{{ product.title }}</span>

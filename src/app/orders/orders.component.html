@@ -15,7 +15,7 @@
     <div *ngFor="let order of orders" class="order-card">
       <div>Order: {{ order.id }}, made on: {{ order.createDate | date }}</div>
       <div>
-        <ul *ngFor="let product of order.products" class="order-card">
+        <ul *ngFor="let product of order.products">
           <li>
             {{ product.title }} | {{ product.price | currency }} X
             {{ product.quantity }} | Total:
