@@ -1,4 +1,4 @@
-import { Order } from '../orders/order.model';
+import {  Order } from '../orders/order.model';
 
 export const order: Order = {
   id: 1,

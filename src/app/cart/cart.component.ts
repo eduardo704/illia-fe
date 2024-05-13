@@ -53,7 +53,15 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.setupAddress();
+    this.setupForm();
+  }
+
+  private setupAddress() {
     this.fakeAdress = `${faker.location.streetAddress()}, ${faker.location.city()}, ${faker.location.state()}`;
+  }
+
+  private setupForm() {
     this.userForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -72,20 +80,30 @@ export class CartComponent implements OnInit {
     this.product$
       .pipe(
         take(1),
-        switchMap((products) => {
-          return this.ordersService.makeOrder({
-            products,
-            user: { ...this.userForm.value },
-          });
-        })
+        switchMap((products) => this.makeOrderRequest(products))
       )
       .subscribe((_order) => {
-        this.store.dispatch(new StateReset(CartState));
-        const email = this.userForm.value.email || '';
-        this.router.navigate(['orders'], {
-          queryParams: { email },
-        });
+        this.resetCartState();
+        this.goToOrders();
       });
+  }
+
+  private resetCartState() {
+    this.store.dispatch(new StateReset(CartState));
+  }
+
+  private makeOrderRequest(products: CartProduct[]): Observable<Object> {
+    return this.ordersService.makeOrder({
+      products,
+      user: { ...this.userForm.value },
+    });
+  }
+
+  private goToOrders() {
+    const email = this.userForm.value.email || '';
+    this.router.navigate(['orders'], {
+      queryParams: { email },
+    });
   }
 
   trackById(index: number, item: CartProduct) {

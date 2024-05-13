@@ -16,5 +16,8 @@ export interface Order {
   user: User;
   id: number;
   createDate: number;
-  total?:number;
+}
+
+export interface OrderState extends Order {
+  total: number;
 }
