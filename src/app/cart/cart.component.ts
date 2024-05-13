@@ -63,6 +63,7 @@ export class CartComponent implements OnInit {
   addToCart(product: Product) {
     this.store.dispatch(new CartActions.AddToCart(product));
   }
+
   removeFromCart(productId: number) {
     this.store.dispatch(new CartActions.RemoveFromCart({ id: productId }));
   }
@@ -78,7 +79,7 @@ export class CartComponent implements OnInit {
           });
         })
       )
-      .subscribe((order) => {
+      .subscribe((_order) => {
         this.store.dispatch(new StateReset(CartState));
         const email = this.userForm.value.email || '';
         this.router.navigate(['orders'], {

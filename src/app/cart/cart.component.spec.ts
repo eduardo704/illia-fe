@@ -1,28 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
-import { CartComponent } from './cart.component';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { NgxsModule, Store } from '@ngxs/store';
-import { ProductsState } from '../state/products/product.state';
-import { CartState } from '../state/cart/cart.state';
-import { RouterModule } from '@angular/router';
-import { OrdersService } from '../orders/orders.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router, RouterModule } from '@angular/router';
+import { NgxsModule, Store } from '@ngxs/store';
+import { StateReset } from 'ngxs-reset-plugin';
+import { productCart } from '../mocks/products.mock';
+import { OrdersService } from '../orders/orders.service';
+import { CartState } from '../state/cart/cart.state';
+import { ProductsState } from '../state/products/product.state';
+import { CartComponent } from './cart.component';
+import { order } from '../mocks/orders.mock';
 import { of } from 'rxjs';
-import { product, productCart } from '../mocks/products.mock';
-import { inject } from '@angular/core';
 
 describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
   let store: Store;
   let ordersService: OrdersService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -45,14 +47,15 @@ describe('CartComponent', () => {
       ],
     }).compileComponents();
     store = TestBed.inject(Store);
-    ordersService =  TestBed.inject(OrdersService);
+    router = TestBed.inject(Router);
+    ordersService = TestBed.inject(OrdersService);
     store.reset({
       ...store.snapshot(),
       cart: {
         products: {
-          '1': {...productCart}
-        }
-      }
+          '1': { ...productCart },
+        },
+      },
     });
 
     fixture = TestBed.createComponent(CartComponent);
@@ -64,15 +67,22 @@ describe('CartComponent', () => {
     expect(component).toBeTruthy();
   });
   describe('placeOrder', () => {
-    it('should work', () => {
+    it('should work', fakeAsync(() => {
       component.userForm.setValue({ email: 'edu@email.com', name: 'edu' });
 
-      const spy = jest.spyOn(ordersService, 'makeOrder');
+      const spy = jest.spyOn(ordersService, 'makeOrder').mockReturnValue(of(order));
+      const storeSpy = jest.spyOn(store, 'dispatch');
+      const routerSpy = jest.spyOn(router, 'navigate');
       component.placeOrder();
       expect(spy).toHaveBeenCalledWith({
         products: [productCart],
         user: { email: 'edu@email.com', name: 'edu' },
       });
-    });
+      tick();
+      expect(storeSpy).toHaveBeenCalledWith(new StateReset(CartState));
+      expect(routerSpy).toHaveBeenCalledWith(['orders'], {
+        queryParams: { email: 'edu@email.com' },
+      });
+    }));
   });
 });

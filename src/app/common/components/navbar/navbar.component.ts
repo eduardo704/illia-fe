@@ -1,16 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDialog } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { LoginModalComponent } from '../../login/login-modal/login-modal.component';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatBadgeModule } from '@angular/material/badge';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Select } from '@ngxs/store';
-import { CartState } from '../../../state/cart/cart.state';
 import { Observable } from 'rxjs';
+import { CartState } from '../../../state/cart/cart.state';
 
 @Component({
   selector: 'app-navbar',
@@ -30,9 +28,7 @@ import { Observable } from 'rxjs';
 export class NavbarComponent {
   @Select(CartState.getTotalCartQuantity)
   totalQuantityOfItems$: Observable<number>;
-  constructor(public dialog: MatDialog) {}
+  constructor() {}
 
-  openDialog(): void {
-    this.dialog.open(LoginModalComponent);
-  }
+
 }
