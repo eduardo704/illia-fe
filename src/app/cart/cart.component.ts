@@ -55,8 +55,8 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.fakeAdress = `${faker.location.streetAddress()}, ${faker.location.city()}, ${faker.location.state()}`;
     this.userForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 

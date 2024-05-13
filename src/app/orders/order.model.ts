@@ -8,12 +8,13 @@ export interface MakeOrderRequest {
 export interface User {
   name: string;
   email: string;
+  id: number;
 }
 
 export interface Order {
   products: CartProduct[];
   user: User;
   id: number;
-  createDate: Date;
-  total:number;
+  createDate: number;
+  total?:number;
 }
