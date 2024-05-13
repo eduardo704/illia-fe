@@ -1,8 +1,6 @@
-import { getAuth } from '@angular/fire/auth';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MakeOrderRequest, Order } from './order.model';
 import { BaseHttpService } from '../common/services/base-http.service';
+import { MakeOrderRequest, Order } from './order.model';
 
 @Injectable({
   providedIn: 'root',
