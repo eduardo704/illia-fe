@@ -89,10 +89,37 @@
             totalQuantityOfItems$ | async | currency
           }}</span>
         </div>
+        <form [formGroup]="userForm">
+          <div class="form-container">
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                placeholder="Email"
+                type="email"
+                formControlName="email"
+              />
+              @if (userForm.get('email')?.invalid) {
+              <mat-error *>
+                {{ userForm.get("email")?.errors }}
+              </mat-error>
+              }
+            </mat-form-field>
 
-        <div>
-          <button (click)="placeOrder()" mat-flat-button color="primary">Place Order</button>
-        </div>
+            <mat-form-field class="form-field">
+              <input
+                matInput
+                placeholder="Name"
+                type="name"
+                formControlName="name"
+              />
+            </mat-form-field>
+            <div>
+              <button [disabled]="userForm.invalid" (click)="placeOrder()" mat-flat-button color="primary">Place Order</button>
+            </div>
+          </div>
+        </form>
+
+
       </div>
     </div>
   </div>
