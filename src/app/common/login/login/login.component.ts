@@ -9,8 +9,6 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +25,7 @@ import { from } from 'rxjs';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, public auth: AngularFireAuth) {}
+  constructor(private fb: FormBuilder,) {}
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -39,9 +37,7 @@ export class LoginComponent {
 
   login(){
     const {email, password}=this.loginForm.value;
-
-    const obs=from(  this.auth.signInWithEmailAndPassword(email, password))
-    obs.subscribe(user=>console.log(user));
+    console.log(email, password)
   }
 
 

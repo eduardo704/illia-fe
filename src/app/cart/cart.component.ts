@@ -1,14 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable, switchMap, take } from 'rxjs';
-import { Product } from '../products/product.model';
-import { CartProduct, CartState } from '../state/cart/cart.state';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { faker } from '@faker-js/faker';
-import { MatIconModule } from '@angular/material/icon';
-import { CartActions } from '../state/cart/cart.actions';
-import { BrowserModule } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,12 +7,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { OrdersService } from '../orders/orders.service';
-import { StateClear, StateReset } from 'ngxs-reset-plugin';
 import { Router } from '@angular/router';
+import { faker } from '@faker-js/faker';
+import { Select, Store } from '@ngxs/store';
+import { StateReset } from 'ngxs-reset-plugin';
+import { Observable, switchMap, take } from 'rxjs';
+import { OrdersService } from '../orders/orders.service';
+import { Product } from '../products/product.model';
+import { CartActions } from '../state/cart/cart.actions';
+import { CartProduct, CartState } from '../state/cart/cart.state';
 
 @Component({
   selector: 'app-cart',
