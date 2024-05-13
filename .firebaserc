@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "edu-illiaaa": {
+      "hosting": {
+        "illia-fe": [
+          "edu-illiaaa"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "edu-illiaaa"
+  }
+}

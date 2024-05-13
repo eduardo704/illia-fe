@@ -107,6 +107,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "illia-fe:build:production",
+              "serveTarget": "illia-fe:serve:production"
+            },
+            "development": {
+              "buildTarget": "illia-fe:build:development",
+              "serveTarget": "illia-fe:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

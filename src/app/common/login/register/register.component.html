@@ -1,0 +1,51 @@
+<div class="login">
+  <h2>Login</h2>
+  <form [formGroup]="loginForm">
+    <div class="form-container">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Name"
+          type="text"
+          formControlName="name"
+        />
+        @if (loginForm.get('name')?.invalid) {
+        <mat-error *>
+          {{ loginForm.get("name")?.errors }}
+        </mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Email"
+          type="email"
+          formControlName="email"
+        />
+        @if (loginForm.get('email')?.invalid) {
+        <mat-error *>
+          {{ loginForm.get("email")?.errors }}
+        </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+        />
+        @if (loginForm.get('password')?.invalid) {
+        <mat-error *>
+          {{ loginForm.get("password")?.errors }}
+        </mat-error>
+        }
+      </mat-form-field>
+      <div>
+        <button mat-flat-button mat-dialog-close>Cancel</button>
+        <button mat-flat-button cdkFocusInitial color="primary">Login</button>
+      </div>
+    </div>
+  </form>
+</div>

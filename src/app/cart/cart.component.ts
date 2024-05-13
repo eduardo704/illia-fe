@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { faker } from '@faker-js/faker';
 import { MatIconModule } from '@angular/material/icon';
 import { CartActions } from '../state/cart/cart.actions';
+import { BrowserModule } from '@angular/platform-browser';
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -33,6 +34,12 @@ export class CartComponent {
   }
   removeFromCart(productId: number) {
     this.store.dispatch(new CartActions.RemoveFromCart({ id: productId }));
+  }
+
+  placeOrder(){
+    this.product$.subscribe(product=>{
+      console.log(product)
+    })
   }
 
   trackById(index:number, item: CartProduct) {

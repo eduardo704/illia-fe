@@ -9,11 +9,11 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { from } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -22,27 +22,25 @@ import { from } from 'rxjs';
     ReactiveFormsModule,
     MatButtonModule,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss',
 })
-export class LoginComponent {
+export class RegisterComponent {
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, public auth: AngularFireAuth) {}
+  registerOkay=false;
+  constructor(private fb: FormBuilder, public auth: AuthService) {}
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', [Validators.required]],
     });
-
-
   }
 
-  login(){
-    const {email, password}=this.loginForm.value;
-
-    const obs=from(  this.auth.signInWithEmailAndPassword(email, password))
-    obs.subscribe(user=>console.log(user));
+  register() {
+    const user= this.loginForm.value;
+    this.auth.register(user).subscribe(_=>{
+      this.registerOkay=true;
+    })
   }
-
-
 }

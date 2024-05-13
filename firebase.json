@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "illia-fe",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

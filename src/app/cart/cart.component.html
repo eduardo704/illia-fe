@@ -3,7 +3,7 @@
   <hr />
   <div class="products-list">
     <div class="products-table">
-      <div class="products-card" *ngFor="let product of product$ | async; trackby: trackById">
+      <div class="products-card" *ngFor="let product of product$ | async; trackBy: trackById">
         <div>
           <img [src]="product.image" alt="" />
         </div>
@@ -91,7 +91,7 @@
         </div>
 
         <div>
-          <button mat-flat-button color="primary">Place Order</button>
+          <button (click)="placeOrder()" mat-flat-button color="primary">Place Order</button>
         </div>
       </div>
     </div>
