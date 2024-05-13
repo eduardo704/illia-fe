@@ -34,6 +34,5 @@ export class NavbarComponent {
 
   openDialog(): void {
     this.dialog.open(LoginModalComponent);
-    // this.dialog.open(LoginModalComponent, {minWidth: 500, minHeight: 700});
   }
 }

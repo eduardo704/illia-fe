@@ -32,9 +32,6 @@ export const appConfig: ApplicationConfig = {
         // disabled: environment.production
       })
     ),
-    // importProvidersFrom(NgxsReduxDevtoolsPluginModule.forRoot({
-    //   disabled: environment.production
-    // })),
     importProvidersFrom(
       NgxsLoggerPluginModule.forRoot({
         disabled: environment.production,

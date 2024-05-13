@@ -114,9 +114,6 @@ export class CartState {
         });
       } else {
         const { [productId]: value, ...newProducts } = state.products;
-        // console.log(withoutSecond); /
-        // delete state.products[action.payload.id];
-        console.log(newProducts);
         ctx.setState({ ...state, products: newProducts });
       }
     }

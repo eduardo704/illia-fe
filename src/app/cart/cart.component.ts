@@ -86,12 +86,7 @@ export class CartComponent implements OnInit {
         this.router.navigate(['orders'], {
           queryParams: { email },
         });
-
-        console.log(order);
       });
-    // this.product$.subscribe((product) => {
-    //   console.log(product);
-    // });
   }
 
   trackById(index: number, item: CartProduct) {
